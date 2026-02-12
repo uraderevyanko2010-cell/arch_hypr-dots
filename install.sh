@@ -44,7 +44,7 @@ installing_yay_packages() {
     echo "Installing yay packages..."
 
     yay -S vscodium-bin 
-    yay -S nerd-fonts-jetbrains-mono
+    yay -S ttf-jetbrains-mono-nerd
 
 }
 
