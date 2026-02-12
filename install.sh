@@ -22,6 +22,7 @@ install_packages() {
     zsh \
     thunar \
     pacman-contrib \
+    swww \
     nvidia-open nvidia-settings nvidia-utils
 
 }
@@ -29,7 +30,8 @@ install_packages() {
 setup_yay() {
 
     echo "Setting up yay..."
-
+    
+    cd $HOME
     git clone https://aur.archlinux.org/yay.git
     cd $HOME/yay
     makepkg -si
@@ -41,7 +43,8 @@ installing_yay_packages() {
 
     echo "Installing yay packages..."
 
-    yay -S vscodium-bin nerd-fonts-jetbrains-mono
+    yay -S vscodium-bin 
+    yay -S nerd-fonts-jetbrains-mono
 
 }
 
@@ -70,7 +73,10 @@ installing_yay_packages
 settingup_system_font
 copying_config
 
+chmod +x $HOME/arch_hypr-dots/wset.sh
+
 echo "Done, rebooting now... (this dotfiles dont create autostart of hyprland\nto start it pls use start-hyprland)"
+echo "To set default wallpapers for hyprland and hyprlock completing the installation run arch_hypr-dots.sh/wset.sh in kitty terminal"
 
 sleep 3
 
