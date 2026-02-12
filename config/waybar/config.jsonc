@@ -1,0 +1,112 @@
+{   
+/* 
+
+        This is Waybar config file. Here u can add/remove or change any of waybar's modules. 
+  !!!Important!!! -- U can't change module's look here. In order to do it plz go to style.css file.
+
+*/
+
+// Guide https://github.com/Alexays/Waybar/wiki
+
+    /*  Behaviour  */
+
+    "layer": "top",
+    "position": "top",
+    "margin-top": 8,
+    "height": 26,
+    "width": 1920,
+    "modules-left": ["custom/menu","clock","custom/updates","custom/fileexplorer","custom/screenshot"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": ["pulseaudio","network","custom/hypridle","custom/notifications"],
+
+
+    /*  Minimals  */
+
+    "clock": {
+        "format-alt": "{:%a, %d. %b  %H:%M}"
+    },
+    "pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-muted": "",
+        "format-icons": {
+            "alsa_output.pci-0000_00_1f.3.analog-stereo": "",
+            "alsa_output.pci-0000_00_1f.3.analog-stereo-muted": "",
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "phone-muted": "",
+            "portable": "",
+            "car": "",
+            "default": ["", ""]
+        },
+        "scroll-step": 1,
+        "on-click": "pavucontrol",
+        "ignored-sinks": ["Easy Effects Sink"]
+    },
+
+    "network": {
+        "interface": "wlo1",
+        "format": "{ifname}",
+        "format-wifi": "WIFI {signalStrength}% ",
+        "format-ethernet": "{ipaddr}/{cidr} 󰊗",
+        "format-disconnected": "", //An empty format will hide the module.
+        "tooltip-format": "{ifname} via {gwaddr} 󰊗",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+        "tooltip-format-ethernet": "{ifname} ",
+        "tooltip-format-disconnected": "Disconnected",
+        "max-length": 50,
+        "on-click": "nm-connection-editor"
+    },
+
+    "hyprland/workspaces": {
+	    "format": "{name}",
+        "persistent-workspaces": {
+             "*": 4 
+        }
+    },
+
+
+    /*  Customs  */
+
+    "custom/menu": {
+        "format": "󰣇",
+        "on-click": "~/.config/waybar/scripts/menu.sh",
+        "tooltip-format": "Rofi"
+    },
+
+    "custom/updates": {
+        "format": "󰅢 {}",
+        "interval": 300,
+        "exec": "checkupdates | wc -l",
+        "on-click": "chmod +x $HOME/.config/waybar/scripts/update-system.sh && $HOME/.config/waybar/scripts/update-system.sh",
+        "tooltip-format": "{} updates available"
+    },
+
+    "custom/fileexplorer": {
+        "format": "",
+        "on-click": "thunar",
+        "tooltip-format": "Open file-manager"
+    },
+
+    "custom/notifications": {
+        "exec": "chmod +x $HOME/.config/dunst/scripts/icon_change.sh && $HOME/.config/dunst/scripts/icon_change.sh",
+        "interval": "once",
+        "signal": 10,
+        "on-click": "chmod +x $HOME/.config/dunst/scripts/mute.sh && $HOME/.config/dunst/scripts/mute.sh"
+    },
+
+    "custom/screenshot": {
+        "format": "󰹑",
+        "on-click": "chmod +x $HOME/.config/waybar/scripts/screenshot.sh && $HOME/.config/waybar/scripts/screenshot.sh"
+    },
+
+    "custom/hypridle": {
+        "exec": "chmod +x $HOME/.config/waybar/scripts/sleep.sh && $HOME/.config/waybar/scripts/sleep.sh",
+        "interval": "once",
+        "signal": 10,
+        "on-click": "chmod +x $HOME/.config/waybar/scripts/kill_hypridle.sh && $HOME/.config/waybar/scripts/kill_hypridle.sh",
+        "tooltip-format": "Keep system awake"
+    }
+}
