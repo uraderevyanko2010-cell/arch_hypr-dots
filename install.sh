@@ -23,6 +23,8 @@ install_packages() {
     thunar \
     pacman-contrib \
     swww \
+    fastfetch \
+    firefox \
     nvidia-open nvidia-settings nvidia-utils
 
 }
