@@ -23,9 +23,6 @@ install_packages() {
     thunar \
     pacman-contrib \
     swww \
-    firefox \
-    fastfetch \
-    cava \
     nvidia-open nvidia-settings nvidia-utils
 
 }
@@ -70,11 +67,32 @@ copying_config() {
 
 }
 
+gtk_themes() {
+
+    echo "Copying gtk themes..."
+
+    mkdir $HOME/.themes
+    cp -r $HOME/arch_hypr-dots/themes/Colloid-Rice $HOME/.themes
+    cp -r $HOME/arch_hypr-dots/themes/Colloid-Rice-hdpi $HOME/.themes
+    cp -r $HOME/arch_hypr-dots/themes/Colloid-Rice-xhdpi $HOME/.themes
+
+}
+
+change_cursor() {
+
+    echo "Unpacking archive with cursor to /usr/share/icons"
+
+    sudo tar -xf $HOME/arch_hypr-dots/themes/Bibata-Modern-Classic.tar.xz -C /usr/share/icons
+
+}
+
 install_packages
 setup_yay
 installing_yay_packages
 settingup_system_font
 copying_config
+gtk_themes
+change_cursor
 
 chmod +x $HOME/arch_hypr-dots/wset.sh
 
