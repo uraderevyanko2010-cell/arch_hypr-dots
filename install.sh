@@ -88,6 +88,13 @@ change_cursor() {
 
 }
 
+auto_wset() {
+
+    rm -rf $HOME/.config/hypr/hyprland/exec_once.conf
+    cp $HOME/arch_hypr-dots/auto/exec_once.conf $HOME/.config/hypr/hyprland
+
+}
+
 install_packages
 setup_yay
 installing_yay_packages
@@ -95,12 +102,12 @@ settingup_system_font
 copying_config
 gtk_themes
 change_cursor
+auto_wset
 
 chmod +x $HOME/arch_hypr-dots/wset.sh
 
-echo "Done, rebooting now... (this dotfiles dont create autostart of hyprland\nto start it pls use start-hyprland)"
-echo "To set default wallpapers for hyprland and hyprlock completing the installation run arch_hypr-dots.sh/wset.sh in kitty terminal"
+echo "Done, rebooting in 6 seconds..."
 
-sleep 3
+sleep 6
 
 reboot
