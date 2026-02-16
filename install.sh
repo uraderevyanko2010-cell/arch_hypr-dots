@@ -25,6 +25,12 @@ install_packages() {
     swww \
     fastfetch \
     firefox \
+    xdg-desktop-portal xdg-desktop-portal-hyprland \
+    easyeffects \
+    telegram-desktop \
+    steam \
+    aircrack-ng \
+    grim slurp \
     nvidia-open nvidia-settings nvidia-utils
 
 }
