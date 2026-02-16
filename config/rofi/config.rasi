@@ -1,8 +1,0 @@
-configuration {
-    modi: "drun,run,window";
-    show-icons: true;
-
-    display-drun: "";
-}
-
-@theme "themes/start-menu"
