@@ -8,3 +8,4 @@ cp $HOME/arch_hypr-dots/wallpapers/default_bg.jpg $HOME/Wallpapers
 swww img $HOME/Wallpapers/default_bg.jpg
 
 notify-send -t 1500 "Dotfiles" "Installation is fully completed, u can safely delete $HOME/arch_hypr-dots yet"
+notify-send -t 20000 "Dotfiles" "It is highly recomended to install oh_my_zsh and powerlevel10k theme to make ur terminal look prettier)) <3"
