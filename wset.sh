@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 mkdir $HOME/Wallpapers
 rm -rf $HOME/.config/hypr/hyprland/exec_once.conf
 cp $HOME/arch_hypr-dots/auto/auto1/exec_once.conf $HOME/.config/hypr/hyprland
