@@ -29,7 +29,10 @@ install_packages() {
     easyeffects \
     telegram-desktop \
     grim slurp \
-    nvidia-open nvidia-settings nvidia-utils
+    nvidia-open nvidia-settings nvidia-utils \
+    gvfs gvfs-mtp gvfs-smb \
+    nwg-look \
+    rsync
 
 }
 
@@ -49,8 +52,8 @@ installing_yay_packages() {
 
     echo "Installing yay packages..."
 
-    yay -S vscodium-bin 
-    yay -S ttf-jetbrains-mono-nerd
+    yay -S vscodium-bin \
+           ttf-jetbrains-mono-nerd
 
 }
 
@@ -92,6 +95,12 @@ change_cursor() {
 
 }
 
+mk_icons() {
+    echo "Unpacking archive with icons to /usr/share/icons"
+
+    sudo tar -xf $HOME/arch_hypr-dots/themes/candy-icons.tar.xz -C /usr/share/icons
+}
+
 auto_wset() {
 
     rm -rf $HOME/.config/hypr/hyprland/exec_once.conf
@@ -106,12 +115,21 @@ settingup_system_font
 copying_config
 gtk_themes
 change_cursor
+mk_icons
 auto_wset
 
 chmod +x $HOME/arch_hypr-dots/wset.sh
 
-echo "Done, rebooting in 6 seconds..."
+echo "###########################################################################"
+echo "###########################################################################"
+echo "###########################################################################"
+echo "###########################################################################"
+echo "###########################################################################"
 
-sleep 6
+echo "Done, rebooting in 10 seconds... " 
+echo "gtk-theme might not apply correctly but "
+echo "these dotfiles install nwg-look so u can change it once u are in hyprland"
+
+sleep 10
 
 reboot
