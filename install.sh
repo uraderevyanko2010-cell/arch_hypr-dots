@@ -32,7 +32,8 @@ install_packages() {
     nvidia-open nvidia-settings nvidia-utils \
     gvfs gvfs-mtp gvfs-smb \
     nwg-look \
-    rsync
+    rsync \
+    lsp-plugins
 
 }
 
@@ -108,6 +109,12 @@ auto_wset() {
 
 }
 
+easyeffects() {
+    rm -rf $HOME/.config/easyeffects/db/easyeffectsrc
+    cp $HOME/arch_hypr-dots/easyeffects/nigger_soundEE.json $HOME/.local/share/easyeffects/output/
+    cp $HOME/arch_hypr-dots/easyeffects/easyeffectsrc $HOME/.config/easyeffects/db/
+}
+
 install_packages
 setup_yay
 installing_yay_packages
@@ -117,6 +124,7 @@ gtk_themes
 change_cursor
 mk_icons
 auto_wset
+easyeffects
 
 chmod +x $HOME/arch_hypr-dots/wset.sh
 
