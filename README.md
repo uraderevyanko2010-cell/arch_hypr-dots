@@ -3,7 +3,7 @@
 > ⚠️ This repository is made for a fresh Arch install.
 > Not tested on Manjaro, EndeavourOS or other Arch-based distros.
 > please be avare that right now this repository is made completely for my setup so before installing u have to change some things such as
-changing monitors config some waybar's config lines and some more *this line will be removed after more common settings set to this repo*
+changing monitors config some waybar's config lines and some more *this line will be removed after more common settings applied to this repo*
 
 ---
 
