@@ -165,6 +165,12 @@ auto_login() {
 
 }
 
+change_default_shell() {
+
+    chsh -s /bin/zsh
+
+}
+
 install_packages
 setup_yay
 installing_yay_packages
@@ -178,6 +184,7 @@ easyeffects
 oh_my_zsh_setup
 auto_hyprland
 auto_login
+change_default_shell
 
 chmod +x $HOME/arch_hypr-dots/wset.sh
 
@@ -192,6 +199,7 @@ echo "##########################################################################
 echo "Done, rebooting in 10 seconds... " 
 echo "gtk-theme might not apply correctly but "
 echo "these dotfiles install nwg-look so u can change it once u are in hyprland"
+echo "If u made an error while typing in ur passwd for the last time please after reboot type 'chsh -s /bin/zsh' to change default shell to zsh. If u dont do it auto hyprland start wont work((("
 
 sleep 10
 
