@@ -152,12 +152,7 @@ oh_my_zsh_setup() {
 
 auto_hyprland() {
 
-    touch $HOME/.zprofile
-
-    echo "if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then" >> $HOME/.zprofile
-    echo "  	sleep 1.5" >> $HOME/.zprofile
-    echo "	    exec start-hyprland" >> $HOME/.zprofile
-    echo "fi" >> $HOME/.zprofile
+    cp $HOME/arch_hypr-dots/CHANGE_BEFORE_INSTALL/.zprofile $HOME
 
 }
 
