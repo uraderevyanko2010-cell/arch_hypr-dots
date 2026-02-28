@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+sudo -v
+
 CONFIG_SRC="$HOME/arch_hypr-dots/config"
 CONFIG_DST="$HOME/.config"
 
@@ -7,9 +9,13 @@ mkdir -p $HOME/.config
 
 install_packages() {
 
-    echo "installing basic packages"
+    echo "
+    #################################
+    ### installing basic packages ###
+    #################################"
 
-    sudo pacman -S --needed hyprland \
+    sudo pacman -Syu
+    sudo pacman -S --needed --noconfirm hyprland \
     hyprlock \
     hypridle \
     kitty \
@@ -33,13 +39,17 @@ install_packages() {
     gvfs gvfs-mtp gvfs-smb \
     nwg-look \
     rsync \
-    lsp-plugins
+    lsp-plugins \
+
 
 }
 
 setup_yay() {
 
-    echo "Setting up yay..."
+    echo "
+    #########################
+    ### Setting up yay... ###
+    #########################"
     
     cd $HOME
     git clone https://aur.archlinux.org/yay.git
@@ -51,10 +61,14 @@ setup_yay() {
 
 installing_yay_packages() {
 
-    echo "Installing yay packages..."
+    echo "
+    ##################################
+    ### Installing yay packages... ###
+    ##################################"
 
-    yay -S vscodium-bin \
-           ttf-jetbrains-mono-nerd
+    yay -S --noconfirm vscodium-bin \
+           ttf-jetbrains-mono-nerd \
+           hydra-launcher \
 
 }
 
@@ -68,8 +82,11 @@ settingup_system_font() {
 
 copying_config() {
 
-    echo "Clonning config files into .config..."
-    
+    echo "
+    #############################################
+    ### Clonning config files into .config... ###
+    #############################################"
+
     for dir in "$CONFIG_SRC"/*; do
         name=$(basename "$dir")
         cp -r "$dir" "$CONFIG_DST/"
@@ -79,9 +96,12 @@ copying_config() {
 
 gtk_themes() {
 
-    echo "Copying gtk themes..."
+    echo "
+    #############################
+    ### Copying gtk themes... ###
+    #############################"
 
-    mkdir $HOME/.themes
+    mkdir -p $HOME/.themes
     cp -r $HOME/arch_hypr-dots/themes/Colloid-Rice $HOME/.themes
     cp -r $HOME/arch_hypr-dots/themes/Colloid-Rice-hdpi $HOME/.themes
     cp -r $HOME/arch_hypr-dots/themes/Colloid-Rice-xhdpi $HOME/.themes
@@ -90,14 +110,21 @@ gtk_themes() {
 
 change_cursor() {
 
-    echo "Unpacking archive with cursor to /usr/share/icons"
+    echo "
+    #########################################################
+    ### Unpacking archive with cursor to /usr/share/icons ###
+    #########################################################"
 
     sudo tar -xf $HOME/arch_hypr-dots/themes/Bibata-Modern-Classic.tar.xz -C /usr/share/icons
 
 }
 
 mk_icons() {
-    echo "Unpacking archive with icons to /usr/share/icons"
+
+    echo "
+    ########################################################
+    ### Unpacking archive with icons to /usr/share/icons ###
+    ########################################################"
 
     sudo tar -xf $HOME/arch_hypr-dots/themes/candy-icons.tar.xz -C /usr/share/icons
 }
@@ -110,9 +137,37 @@ auto_wset() {
 }
 
 easyeffects() {
+
     rm -rf $HOME/.config/easyeffects/db/easyeffectsrc
     cp $HOME/arch_hypr-dots/easyeffects/nigger_soundEE.json $HOME/.local/share/easyeffects/output/
     cp $HOME/arch_hypr-dots/easyeffects/easyeffectsrc $HOME/.config/easyeffects/db/
+
+}
+
+oh_my_zsh_setup() {
+
+    yes | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" 
+
+}
+
+auto_hyprland() {
+
+    touch $HOME/.zprofile
+
+    echo "if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then" >> $HOME/.zprofile
+    echo "  	sleep 1.5" >> $HOME/.zprofile
+    echo "	    exec start-hyprland" >> $HOME/.zprofile
+    echo "fi" >> $HOME/.zprofile
+
+}
+
+auto_login() {
+
+    sudo mkdir -p /etc/systemd/system/getty@tty1.service.d
+    sudo cp $HOME/arch_hypr-dots/CHANGE_BEFORE_INSTALL/override.conf /etc/systemd/system/getty@tty1.service.d/
+
+    sudo systemctl daemon-reload
+
 }
 
 install_packages
@@ -125,14 +180,19 @@ change_cursor
 mk_icons
 auto_wset
 easyeffects
+oh_my_zsh_setup
+auto_hyprland
+auto_login
 
 chmod +x $HOME/arch_hypr-dots/wset.sh
 
+
 echo "###########################################################################"
 echo "###########################################################################"
 echo "###########################################################################"
 echo "###########################################################################"
 echo "###########################################################################"
+
 
 echo "Done, rebooting in 10 seconds... " 
 echo "gtk-theme might not apply correctly but "
