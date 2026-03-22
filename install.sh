@@ -40,6 +40,7 @@ install_packages() {
     nwg-look \
     rsync \
     lsp-plugins \
+    os-prober \
 
 
 }
@@ -171,6 +172,15 @@ change_default_shell() {
 
 }
 
+grub_change() {
+
+    sudo cp -r $HOME/arch_hypr-dots/grub/Grub_default_theme /usr/share/grub/themes/
+    sudo rm -rf /etc/default/grub && sudo cp $HOME/arch_hypr-dots/grub/grub /etc/default/
+
+    sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+}
+
 install_packages
 setup_yay
 installing_yay_packages
@@ -185,6 +195,7 @@ oh_my_zsh_setup
 auto_hyprland
 auto_login
 change_default_shell
+grub_change
 
 chmod +x $HOME/arch_hypr-dots/wset.sh
 
